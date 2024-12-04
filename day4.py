@@ -1,6 +1,14 @@
+def check_letter (X,Y, X_D,Y_D, letter,list_in, list_out, compass):
+    if -1< X_D < int(n_columns) and -1 < Y_D < int(n_rows) and list_in[int(X_D)] [int(Y_D)] == letter:
+        list_out[X_D,Y_D] = compass
+        return list_out
+
+def check_letter_direction (X, Y, X_D, Y_D, letter, list_in, list_out, compass):
+    if -1 < X_D < int(n_columns) and -1 < Y_D < int(n_rows) and direction == compass and list_in[int(X_D)][int(Y_D)] == letter:
+        list_out[X_D, Y_D] = direction
+
 with open('inputs/day4_input.txt', 'r') as file:
     content = file.read().splitlines()
-    print (content[0][1])
     #setup lists/ dictionaries for letter coordinates
     X_list = []
     M_list = {}
@@ -18,6 +26,7 @@ with open('inputs/day4_input.txt', 'r') as file:
                 if character == "X":
                     coordinates = lindex, rindex
                     X_list.append(coordinates)
+print (X_list)
 
 #get list of Ms by the Xs and determine direction
 for X , Y in X_list:
@@ -38,26 +47,19 @@ for X , Y in X_list:
     X_NW = X-1
     Y_NW = Y-1
     #check North
-    if -1< X_N < int(n_columns) and -1 < Y_N < int(n_rows) and content[int(X_N)] [int(Y_N)] == "M":
-        M_list[X_N,Y_N] = "N"
-    #check North East
-    if -1< X_NE < int(n_columns) and -1 < Y_NE < int(n_rows) and content[int(X_NE)] [int(Y_NE)] == "M":
-        M_list[X_NE,Y_NE] = "NE"
-    #check East
-    if -1< X_E < int(n_columns) and -1 < Y_E < int(n_rows) and content[int(X_E)] [int(Y_E)] == "M":
-        M_list[X_E, Y_E] = "E"
-    # check South East
-    if -1< X_SE < int(n_columns) and -1 < Y_SE < int(n_rows) and content[int(X_SE)] [int(Y_SE)] == "M":
-        M_list[X_SE, Y_SE] = "SE"
-    # check South
-    if -1< X_S < int(n_columns) and -1 < Y_S < int(n_rows) and content[int(X_S)] [int(Y_S)] == "M":
-        M_list[X_S, Y_S] = "S"
-    # check South West
-    if -1< X_SW < int(n_columns) and -1 < Y_SW < int(n_rows) and content[int(X_SW)] [int(Y_SW)] == "M":
-        M_list[X_SW, Y_SW] = "SW"
-    # check West
-    if -1< X_W < int(n_columns) and -1 < Y_W < int(n_rows) and content[int(X_W)] [int(Y_W)] == "M":
-        M_list[X_W,Y_W] = "W"
+    check_letter(X,Y,X_N,Y_N,"M",X_list, M_list,"N")
+    check_letter(X,Y,X_NE,Y_NE,"M",X_list, M_list,"NE")
+    check_letter(X,Y,X_E,Y_E,"M",X_list, M_list,"E")
+    check_letter(X,Y,X_SE,Y_SE,"M",X_list, M_list,"SE")
+    check_letter(X,Y,X_S,Y_S,"M", X_list, M_list,"S")
+    check_letter(X,Y,X_SW,Y_SW,"M", X_list, M_list,"SW")
+    check_letter(X,Y,X_W,Y_W,"M", X_list, M_list,"W")
+    check_letter(X,Y,X_NW,Y_NW,"M", X_list, M_list,"NW")
+print (M_list)
+print (len(M_list))
+
+
+
 #get list of As by the Ms and following direction
 for coordinates , direction in M_list.items():
     X_Y = str(coordinates).split(", ")
@@ -148,4 +150,4 @@ for coordinates , direction in A_list.items():
     if -1< X_W < int(n_columns) and -1 < Y_W < int(n_rows) and direction =="W" and content[int(X_W)] [int(Y_W)] == "S":
         count +=1
 
-print(count)
+#print(count)
