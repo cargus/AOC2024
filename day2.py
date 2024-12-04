@@ -7,9 +7,7 @@ def is_safe(readings: list[str], tolerance: int = 0) -> bool:
     direction = ""
     difference = int(readings[i]) - int(readings[i + 1])
     status = ""
-    if difference == 0:
-        i += 1
-        return False
+
     if difference < 0:
         direction = "down"
     if difference > 0:
@@ -31,14 +29,22 @@ def is_safe(readings: list[str], tolerance: int = 0) -> bool:
             break
         i += 1
     if status == "pass":
+        print (readings)
+        print ("true")
         return True
     elif tolerance == 0:
         for counter in range(len(readings)):
             new_list = list(readings)
             del new_list[counter]
             if is_safe(new_list, tolerance + 1):
+                print(readings)
+                print("true")
                 return True
+        print (readings)
+        print("false")
         return False
+    print(readings)
+    print("false")
     return False
 
 with open('./day2_input.txt', 'r') as file:
