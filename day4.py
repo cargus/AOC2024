@@ -1,12 +1,12 @@
 #check Second letter and determine direction
 def check_letter (row_d,col_d, letter, list_out, compass):
-    if -1< row_d < int(n_rows-1) and -1 < col_d < int(n_columns) and content[int(row_d)] [int(col_d)] == letter:
+    if 0<= row_d <= int(n_rows-1) and 0 <= col_d <= int(n_columns-1) and content[int(row_d)] [int(col_d)] == letter:
         list_out[row_d,col_d] = compass
         return list_out
 
 #check letters after direction determined
 def check_letter_direction (row_d, col_d, letter, list_out, compass):
-    if -1 < row_d < int(n_rows-1) and -1 < col_d < int(n_columns) and direction == compass and content[int(row_d)][int(col_d)] == letter:
+    if 0 <= row_d <= int(n_rows-1) and 0 <= col_d <= int(n_columns-1) and direction == compass and content[int(row_d)][int(col_d)] == letter:
         list_out[row_d, col_d] = direction
 
 #open input file
