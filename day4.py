@@ -1,12 +1,12 @@
 #check Second letter and determine direction
 def check_letter (row_d,col_d, letter, list_out, compass):
-    if -1< row_d < int(n_rows-1) and -1 < col_d < int(n_columns-1) and content[int(row_d)] [int(col_d)] == letter:
+    if -1< row_d < int(n_rows-1) and -1 < col_d < int(n_columns) and content[int(row_d)] [int(col_d)] == letter:
         list_out[row_d,col_d] = compass
         return list_out
 
 #check letters after direction determined
 def check_letter_direction (row_d, col_d, letter, list_out, compass):
-    if -1 < row_d < int(n_rows-1) and -1 < col_d < int(n_columns-1) and direction == compass and content[int(row_d)][int(col_d)] == letter:
+    if -1 < row_d < int(n_rows-1) and -1 < col_d < int(n_columns) and direction == compass and content[int(row_d)][int(col_d)] == letter:
         list_out[row_d, col_d] = direction
 
 #open input file
@@ -25,10 +25,10 @@ column_count = [len(string) for string in content]
 n_columns = column_count[0]
 
 #find coordinates of all X's in the word search
-for col_index, line in enumerate(content):
-    for rindex, character in enumerate (line):
+for row_index, line in enumerate(content):
+    for col_index, character in enumerate (line):
             if character == "X":
-                coordinates = rindex, col_index
+                coordinates = row_index, col_index
                 X_list.append(coordinates)
 print ("the number of Xs is " + str(len(X_list)))
 print (X_list)
@@ -68,11 +68,12 @@ print (M_list)
 #get list of As by the Ms and following direction
 for coordinates , direction in M_list.items():
 #clean up X and Y coordinates from the dictionary list
-    X_Y = str(coordinates).split(", ")
-    col = X_Y[1].rstrip(')')
-    col = int(col)
-    row = X_Y[0].lstrip('(')
+    row_col = str(coordinates).split(", ")
+    row = row_col[0].lstrip('(')
     row = int(row)
+    col = row_col[1].rstrip(')')
+    col = int(col)
+
 #define all coordinates to look at
     col_N = col
     row_N = row - 1
@@ -91,23 +92,24 @@ for coordinates , direction in M_list.items():
     row_NW = row - 1
     col_NW = col - 1
 #check all coordinates for letter A
-    check_letter_direction(col_N, row_N, "A", A_list, "N")
-    check_letter_direction(col_NE, row_NE, "A", A_list, "NE")
-    check_letter_direction(col_E, row_E, "A", A_list, "E")
-    check_letter_direction(col_SE, row_SE, "A", A_list, "SE")
-    check_letter_direction(col_S, row_S, "A", A_list, "S")
-    check_letter_direction(col_SW, row_SW, "A", A_list, "SW")
-    check_letter_direction(col_W, row_W, "A", A_list, "W")
-    check_letter_direction(col_NW, row_NW, "A", A_list, "NW")
+    check_letter_direction(row_N, col_N, "A", A_list, "N")
+    check_letter_direction(row_NE, col_NE, "A", A_list, "NE")
+    check_letter_direction(row_E, col_E, "A", A_list, "E")
+    check_letter_direction(row_SE, col_SE, "A", A_list, "SE")
+    check_letter_direction(row_S, col_S, "A", A_list, "S")
+    check_letter_direction(row_SW, col_SW, "A", A_list, "SW")
+    check_letter_direction(row_W, col_W, "A", A_list, "W")
+    check_letter_direction(row_NW, col_NW, "A", A_list, "NW")
 
 #get count of Ss by the As and following direction
 for coordinates , direction in A_list.items():
 #clean up X and Y coordinates from the dictionary list
-    X_Y = str(coordinates).split(", ")
-    col = X_Y[1].rstrip(')')
-    col = int(col)
-    row = X_Y[0].lstrip('(')
+    row_col = str(coordinates).split(", ")
+    row = row_col[0].lstrip('(')
     row = int(row)
+    col = row_col[1].rstrip(')')
+    col = int(col)
+
 # define all coordinates to look at
     col_N = col
     row_N = row - 1
