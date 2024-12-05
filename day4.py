@@ -1,5 +1,8 @@
 # check Second letter and determine direction
-def letter_search(row_d, col_d, letter, coordinates):
+from typing import Tuple, Optional
+
+
+def letter_search(row_d: int, col_d: int, letter: str, coordinates: Tuple[int, int]) -> Optional[Tuple[int, int]]:
     row = int(coordinates[0]) + int(row_d)
     col = int(coordinates[1]) + int(col_d)
     if row not in range(len(content)) or col not in range(len(content[0])):
@@ -55,12 +58,12 @@ for row, col in A_list:
     NE = X_search(-1, 1, coordinates)
     SW = X_search(1, -1, coordinates)
     if NW and SW:
-        count +=1
+        count += 1
     if NW and NE:
-        count +=1
+        count += 1
     if SW and SE:
-        count +=1
+        count += 1
     if NE and SE:
-        count +=1
+        count += 1
 
 print(count)
