@@ -1,4 +1,4 @@
-with open('./day1_input.txt', 'r') as file:
+with open('inputs/day1_input.txt', 'r') as file:
     content = file.read().splitlines()
 
 column_1 = []

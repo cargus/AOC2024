@@ -47,7 +47,7 @@ def is_safe(readings: list[str], tolerance: int = 0) -> bool:
     print("false")
     return False
 
-with open('./day2_input.txt', 'r') as file:
+with open('inputs/day2_input.txt', 'r') as file:
     content = file.read().splitlines()
 safe_reports = 0
 

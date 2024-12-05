@@ -1,4 +1,4 @@
-with open('./day3_input.txt', 'r') as file:
+with open('inputs/day3_input.txt', 'r') as file:
     content = file.read()
     import re
     dont_list = re.finditer("(don't\(\))", content)
